@@ -10,7 +10,7 @@ import Foundation
 
 class HttpRequest {
     
-    let api_Key = "aa43ddbf669e763f88336491f2193c08"
+    let api_Key = "YOUR_API_KEY"
     let lat = "40.662722"
     let lon = "29.307784"
     let baseUrl = "https://api.openweathermap.org/data/2.5/"
