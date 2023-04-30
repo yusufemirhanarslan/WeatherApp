@@ -6,23 +6,22 @@
 //
 
 import Foundation
-
+import UIKit
 
 class HttpRequest {
     
-    let api_Key = "YOUR_API_KEY"
-    let lat = "40.662722"
-    let lon = "29.307784"
+    let api_Key = "aa43ddbf669e763f88336491f2193c08"
     let baseUrl = "https://api.openweathermap.org/data/2.5/"
     
     
-    func getCurrentWeatherData(completion: @escaping (ResultAirPollution?, Error?) -> Void) {
+    func getCurrentWeatherData(lat: Double, lon: Double,completion: @escaping (Result?, Error?) -> Void) {
+        
         
         let currentWeatherApi = baseUrl + "weather?lat=\(lat)&lon=\(lon)&appid=\(api_Key)"
         let air_pollution = baseUrl + "air_pollution?lat=\(lat)&lon=\(lon)&appid=\(api_Key)"
         let forecast = baseUrl + "forecast?lat=\(lat)&lon=\(lon)&appid=\(api_Key)"
         
-        guard let url = URL(string: air_pollution) else {
+        guard let url = URL(string: currentWeatherApi) else {
                 fatalError("Failed to create URL.")
             }
 
@@ -53,7 +52,7 @@ class HttpRequest {
 
                 do {
                     let decoder = JSONDecoder()
-                    let result = try decoder.decode(ResultAirPollution.self, from: data)
+                    let result = try decoder.decode(Result.self, from: data)
                     // Verileriniz artık "result" adlı değişkende tutuluyor.
                     completion(result, nil)
                     
@@ -64,4 +63,31 @@ class HttpRequest {
             task.resume()
         }
     
+    func getIconImage(with imageString: String) -> UIImage{
+        
+        var iconImage = UIImage()
+        
+        guard let url = URL(string: "https://openweathermap.org/img/wn/\(imageString)@2x.png") else {
+            fatalError("Invalid URL")
+        }
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { data, response, error in
+            if let error = error {
+                fatalError("Error: \(error.localizedDescription)")
+            }
+
+            guard let data = data, let image = UIImage(data: data) else {
+                fatalError("Invalid image data")
+            }
+
+            DispatchQueue.main.async {
+                // UIImageView'in image özelliğine yüklemek için
+                iconImage = image
+            }
+        }
+        task.resume()
+        return iconImage
+        
+    }
 }

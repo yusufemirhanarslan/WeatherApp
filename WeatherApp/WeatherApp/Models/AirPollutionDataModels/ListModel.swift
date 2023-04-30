@@ -8,9 +8,7 @@
 import Foundation
 
 struct ListModel:Codable {
-    
     let main: AirPollutionMainModel?
     let components: ComponentsModel?
     let dt: Int?
-    
 }

@@ -25,6 +25,11 @@
 		B4370B9D29FC79D500E2A0B0 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4370B9C29FC79D500E2A0B0 /* ListModel.swift */; };
 		B4370B9F29FC7A7A00E2A0B0 /* AirPollutionMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4370B9E29FC7A7A00E2A0B0 /* AirPollutionMainModel.swift */; };
 		B4370BA129FC7AA000E2A0B0 /* ComponentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4370BA029FC7AA000E2A0B0 /* ComponentsModel.swift */; };
+		B4BDB84C29FE696900A2F2B0 /* ResultForeCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BDB84B29FE696900A2F2B0 /* ResultForeCast.swift */; };
+		B4BDB84E29FE69B100A2F2B0 /* ForecastListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BDB84D29FE69B100A2F2B0 /* ForecastListModel.swift */; };
+		B4BDB85229FE6DB600A2F2B0 /* ForeCastMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BDB85129FE6DB600A2F2B0 /* ForeCastMainModel.swift */; };
+		B4BDB85629FE719B00A2F2B0 /* ForeCastSysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BDB85529FE719B00A2F2B0 /* ForeCastSysModel.swift */; };
+		B4BDB85829FE739C00A2F2B0 /* ForeCastCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BDB85729FE739C00A2F2B0 /* ForeCastCityModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +53,11 @@
 		B4370B9C29FC79D500E2A0B0 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		B4370B9E29FC7A7A00E2A0B0 /* AirPollutionMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPollutionMainModel.swift; sourceTree = "<group>"; };
 		B4370BA029FC7AA000E2A0B0 /* ComponentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsModel.swift; sourceTree = "<group>"; };
+		B4BDB84B29FE696900A2F2B0 /* ResultForeCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultForeCast.swift; sourceTree = "<group>"; };
+		B4BDB84D29FE69B100A2F2B0 /* ForecastListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastListModel.swift; sourceTree = "<group>"; };
+		B4BDB85129FE6DB600A2F2B0 /* ForeCastMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeCastMainModel.swift; sourceTree = "<group>"; };
+		B4BDB85529FE719B00A2F2B0 /* ForeCastSysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeCastSysModel.swift; sourceTree = "<group>"; };
+		B4BDB85729FE739C00A2F2B0 /* ForeCastCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeCastCityModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +106,7 @@
 		B4370B8629FC689600E2A0B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B4370B9B29FC792D00E2A0B0 /* New Group */,
+				B4370B9B29FC792D00E2A0B0 /* ForecastModels */,
 				B4370B9829FC78F100E2A0B0 /* AirPollutionDataModels */,
 				B4370B8729FC689C00E2A0B0 /* CurrentDataModels */,
 			);
@@ -128,11 +138,16 @@
 			path = AirPollutionDataModels;
 			sourceTree = "<group>";
 		};
-		B4370B9B29FC792D00E2A0B0 /* New Group */ = {
+		B4370B9B29FC792D00E2A0B0 /* ForecastModels */ = {
 			isa = PBXGroup;
 			children = (
+				B4BDB84B29FE696900A2F2B0 /* ResultForeCast.swift */,
+				B4BDB84D29FE69B100A2F2B0 /* ForecastListModel.swift */,
+				B4BDB85129FE6DB600A2F2B0 /* ForeCastMainModel.swift */,
+				B4BDB85529FE719B00A2F2B0 /* ForeCastSysModel.swift */,
+				B4BDB85729FE739C00A2F2B0 /* ForeCastCityModel.swift */,
 			);
-			path = "New Group";
+			path = ForecastModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,15 +224,20 @@
 				B4370B9A29FC791000E2A0B0 /* ResultAirPollution.swift in Sources */,
 				B4370B7729FC687C00E2A0B0 /* ViewController.swift in Sources */,
 				B4370B7329FC687C00E2A0B0 /* AppDelegate.swift in Sources */,
+				B4BDB85829FE739C00A2F2B0 /* ForeCastCityModel.swift in Sources */,
 				B4370B8B29FC694900E2A0B0 /* CoordModel.swift in Sources */,
 				B4370B9F29FC7A7A00E2A0B0 /* AirPollutionMainModel.swift in Sources */,
+				B4BDB84C29FE696900A2F2B0 /* ResultForeCast.swift in Sources */,
 				B4370B9329FC6F5800E2A0B0 /* CloudsModel.swift in Sources */,
 				B4370B9529FC6F7C00E2A0B0 /* SystemModel.swift in Sources */,
 				B4370B8F29FC6A2800E2A0B0 /* MainModel.swift in Sources */,
+				B4BDB85229FE6DB600A2F2B0 /* ForeCastMainModel.swift in Sources */,
 				B4370BA129FC7AA000E2A0B0 /* ComponentsModel.swift in Sources */,
+				B4BDB85629FE719B00A2F2B0 /* ForeCastSysModel.swift in Sources */,
 				B4370B8929FC68B600E2A0B0 /* Result.swift in Sources */,
 				B4370B9129FC6F0D00E2A0B0 /* WindModel.swift in Sources */,
 				B4370B9729FC74B000E2A0B0 /* HttpRequest.swift in Sources */,
+				B4BDB84E29FE69B100A2F2B0 /* ForecastListModel.swift in Sources */,
 				B4370B9D29FC79D500E2A0B0 /* ListModel.swift in Sources */,
 				B4370B8D29FC698000E2A0B0 /* WeatherModel.swift in Sources */,
 				B4370B7529FC687C00E2A0B0 /* SceneDelegate.swift in Sources */,
