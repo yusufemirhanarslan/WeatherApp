@@ -77,13 +77,15 @@ class HttpRequest {
                 fatalError("Error: \(error.localizedDescription)")
             }
 
-            guard let data = data, let image = UIImage(data: data) else {
+            guard let data = data else {
                 fatalError("Invalid image data")
             }
 
             DispatchQueue.main.async {
                 // UIImageView'in image özelliğine yüklemek için
-                iconImage = image
+                if let image = UIImage(data: data) {
+                    iconImage = image
+                }
             }
         }
         task.resume()
