@@ -15,7 +15,7 @@ struct ForecastListModel:Codable {
     let clouds: CloudsModel?
     let wind: WindModel?
     let visibility: Int?
-    let pop: Int?
+    let pop: Double?
     let sys: ForeCastSysModel?
     let dt_txt: String?
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="gTV-IL-0wX" customClass="AirPollutionCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="116" height="117"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="116" height="117"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKC-z7-gbe">
+                        <rect key="frame" x="0.0" y="0.0" width="116" height="117"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uzg-YP-yCr">
+                                <rect key="frame" x="8" y="8" width="100" height="101"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Aqd-Ie-241">
+                                <rect key="frame" x="40" y="44" width="36" height="29"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="so2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfB-HJ-ci2">
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="14.666666666666666"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="% 100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqd-ze-iIr">
+                                        <rect key="frame" x="0.0" y="14.666666666666664" width="36" height="14.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.098039215686274508" green="0.65490196078431373" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uzg-YP-yCr" firstAttribute="leading" secondItem="FKC-z7-gbe" secondAttribute="leading" constant="8" id="8a9-wB-xG4"/>
+                            <constraint firstItem="Aqd-Ie-241" firstAttribute="top" secondItem="FKC-z7-gbe" secondAttribute="top" constant="44" id="QgI-3l-FiE"/>
+                            <constraint firstAttribute="bottom" secondItem="uzg-YP-yCr" secondAttribute="bottom" constant="8" id="TEl-fK-9I4"/>
+                            <constraint firstItem="Aqd-Ie-241" firstAttribute="leading" secondItem="FKC-z7-gbe" secondAttribute="leading" constant="40" id="U0p-3V-Zbu"/>
+                            <constraint firstAttribute="bottom" secondItem="Aqd-Ie-241" secondAttribute="bottom" constant="44" id="VLg-63-VVL"/>
+                            <constraint firstItem="uzg-YP-yCr" firstAttribute="top" secondItem="FKC-z7-gbe" secondAttribute="top" constant="8" id="cQA-xC-Y2F"/>
+                            <constraint firstAttribute="trailing" secondItem="uzg-YP-yCr" secondAttribute="trailing" constant="8" id="jw8-yP-OcY"/>
+                            <constraint firstAttribute="trailing" secondItem="Aqd-Ie-241" secondAttribute="trailing" constant="40" id="whT-BZ-tPf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="FKC-z7-gbe" secondAttribute="trailing" id="NoQ-VF-ApG"/>
+                <constraint firstItem="FKC-z7-gbe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y6M-O0-4UV"/>
+                <constraint firstAttribute="bottom" secondItem="FKC-z7-gbe" secondAttribute="bottom" id="Zbn-Oc-lVV"/>
+                <constraint firstItem="FKC-z7-gbe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tJ2-JO-av9"/>
+            </constraints>
+            <size key="customSize" width="116" height="117"/>
+            <connections>
+                <outlet property="circleView" destination="uzg-YP-yCr" id="34L-G3-xhg"/>
+                <outlet property="outView" destination="FKC-z7-gbe" id="BRX-wq-N85"/>
+                <outlet property="pollutionGasesLAbel" destination="rfB-HJ-ci2" id="6nZ-0b-Yun"/>
+                <outlet property="pollutionGasesPercent" destination="cqd-ze-iIr" id="DdK-IQ-Yt0"/>
+            </connections>
+            <point key="canvasLocation" x="-9" y="45"/>
+        </collectionViewCell>
+    </objects>
+</document>

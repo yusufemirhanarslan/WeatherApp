@@ -9,28 +9,40 @@ import UIKit
 
 class SheetViewController: UIViewController {
     
+    @IBOutlet weak var customView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    var currentDetailsView: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         
+        let detailViews = DetailsView(frame: customView.bounds)
+        customView.addSubview(detailViews)
+        currentDetailsView = detailViews
+        
     }
     
-    
     @IBAction func changeSegmented(_ sender: Any) {
+        
+        currentDetailsView?.removeFromSuperview()
         
         switch segmentedControl.selectedSegmentIndex {
             
         case 0:
-            print("0.endeks seçildi")
-            // view olacak view'in sınıfı değişecek
+            let detailsView2 = DetailsView(frame: customView.bounds)
+            customView.addSubview(detailsView2)
+            currentDetailsView = detailsView2
         case 1:
-            print("1.endesk seçildi")
-            // burada da viewin sınıfı değişecek
+            let airPollutionView = AirPollutionView(frame: customView.bounds)
+            customView.addSubview(airPollutionView)
+            currentDetailsView = airPollutionView
         default:
             break
         }
     }
+    
     
 }

@@ -7,14 +7,18 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
 
 class ViewController: UIViewController {
     // icon image = https://openweathermap.org/img/wn/"\(iconName)"@2x.png
     
     let sheetVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SheetViewController")
     
+    let center = UNUserNotificationCenter.current()
+    
     @IBOutlet weak var currentLocationName: UILabel!
     
+    @IBOutlet weak var notificationSender: UIImageView!
     @IBOutlet weak var weatherStatusView: UIView!
     @IBOutlet weak var currentWeatherDescription: UILabel!
     @IBOutlet weak var currentWeatherDegree: UILabel!
@@ -24,6 +28,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentHumidityLabel: UILabel!
     @IBOutlet weak var currnetWindState: UILabel!
     
+    @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var sunriseLabel: UILabel!
     let locationManager = CLLocationManager()
     let httpRequest = HttpRequest()
     let gradientLayer = CAGradientLayer()
@@ -31,11 +37,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         setupView()
         checkLocationServices()
+        requestNotification()
     }
-    
     
     private func setupView() {
         
@@ -49,11 +54,65 @@ class ViewController: UIViewController {
         currentForecastView.layer.borderColor = UIColor.black.withAlphaComponent(0.4).cgColor
         currentForecastView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         
-        currentWeatherImage.contentMode = .scaleToFill
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sendNotification))
+        notificationSender.isUserInteractionEnabled = true
+        notificationSender.addGestureRecognizer(tapGestureRecognizer)
         
-       
         forecastViewTapGesture()
     }
+    
+    func requestNotification() {
+        center.requestAuthorization(options: [.badge,.sound,.alert]) { (granted,error) in
+            
+            if error == nil {
+                
+                print("User permission granted = \(granted)")
+            }
+        }
+        
+    }
+    
+    @objc func sendNotification() {
+        
+        //Create the notificaiton content
+        let content = UNMutableNotificationContent()
+        content.title = "Merhaba Nasılsınız efenim"
+        content.body = "Sağolun iyiyim"
+        
+        center.getDeliveredNotifications { (notifications) in
+            
+            for notification in notifications {
+                print("Delivered notifications Title \(notification.request.content.title)")
+            }
+            
+        }
+        
+        // Create the notification trigger
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        // Create a request
+        let uuid = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
+        
+        // Register with notification center
+        
+        center.add(request) { error in
+            
+            if let error = error {
+                        print("Error adding notification request: \(error.localizedDescription)")
+                    } else {
+                        print("Notification request added successfully")
+                    }
+            
+        }
+                 
+    }
+    
+    func formattedDate(date: Date) -> String
+        {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d MMM y HH:mm"
+            return formatter.string(from: date)
+        }
     
     private func forecastViewTapGesture() {
         
@@ -65,7 +124,7 @@ class ViewController: UIViewController {
         
         if let sheet = sheetVC.sheetPresentationController {
             
-            sheet.detents = [.medium(), .large()]
+            sheet.detents = [.medium()]
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 24
@@ -116,7 +175,6 @@ class ViewController: UIViewController {
         case .authorizedAlways:
             return
         case .authorizedWhenInUse:
-            print("Kullanıcı izin vermiş")
             currentWeatherCase()
         default:
             break
@@ -130,7 +188,7 @@ class ViewController: UIViewController {
         let lat = findLocation().coordinate.latitude
         let lon = findLocation().coordinate.longitude
         
-        httpRequest.getCurrentWeatherData(lat: lat, lon: lon) { result, error in
+        httpRequest.getCurrentWeatherData() { result, error in
             
             if let error = error {
                 print("Error: \(error.localizedDescription)")
@@ -143,9 +201,9 @@ class ViewController: UIViewController {
                     self.currentWeatherDescription.text = result.weather.first??.main
                     
                     if let icon = result.weather.first??.icon {
-                        let image = self.httpRequest.getIconImage(with: icon)
-                        self.currentWeatherImage.image = image
+                        ConfigureImageview.setIconImage(imageView: self.currentWeatherImage, imageString: icon)
                     }
+                    
                     
                     self.currentWeatherDegree.text = "\(String(format: "%.1f", (result.main?.temp)! - 272.15))°"
                     
@@ -157,6 +215,15 @@ class ViewController: UIViewController {
                         self.currentHumidityLabel.text = "Humidty | % \(humidty) "
                     }
                     
+                    if let sunrise = result.sys?.sunrise {
+                        self.sunriseLabel.text = self.changeDate(unixTimeStamp: sunrise)
+                    }
+                    
+                    if let sunset = result.sys?.sunset {
+                        self.sunsetLabel.text = self.changeDate(unixTimeStamp: sunset)
+                    }
+                    
+                    
                 }
                 
             }
@@ -165,14 +232,15 @@ class ViewController: UIViewController {
         
     }
     
-    func changeDate() {
-        let unixTimestamp = 1000000
+    func changeDate(unixTimeStamp: Int) -> String{
+        let unixTimestamp = unixTimeStamp
         let date = Date(timeIntervalSince1970: TimeInterval(unixTimestamp))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 10800)
         let formattedTime = dateFormatter.string(from: date)
-        print(formattedTime)
+        
+        return formattedTime
     }
     
 }
